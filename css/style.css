@@ -1,0 +1,161 @@
+body {
+  margin: 0;
+  padding: 0;
+  color: #444;
+  line-height: 150%;
+}
+
+h1,h2,h3,h4,h5,h6,p,ul,li,span{
+  margin: 0;
+  padding: 0;
+}
+
+/*========================================
+  リンク
+========================================*/
+
+a,
+a:active,
+a:focus {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/*========================================
+  サイト全体
+========================================*/
+.site-width{
+	width: 980px;
+	margin: 0 auto;
+}
+
+.btn{
+	padding: 15px 15px;
+	background-color: #b6a489;
+	color: white;
+	font-size: 18px;
+}
+
+/*========================================
+  ヘッダー
+========================================*/
+header{
+	background-color: #333;
+	height: 80px;
+	line-height: 89px;
+	color: white;
+}
+
+header .menu{
+	display: flex;
+	justify-content: space-between
+}
+
+header .menu ul{
+	display: flex;
+	list-style: none;
+}
+
+header .menu ul li{
+	margin-left: 15px;
+}
+
+/*========================================
+  メイン
+========================================*/
+
+.product-title{
+	margin-top: 25px;
+}
+
+.product-title-category{
+	background-color: #00bfff;
+	padding: 5px 15px;
+	color: white;
+	vertical-align: middle;
+}
+
+.product-title-title{
+	font-size: 25px;
+	vertical-align: bottom;
+}
+
+/*========================================
+  画像
+========================================*/
+.product-img-container{
+	display: flex;
+	margin-top: 25px;
+}
+
+.img-main{
+	width: 75%;
+}
+
+.img-sub{
+	width: 25%;
+	padding: 0px 15px;
+	box-sizing: border-box;
+	background-color: #f6f5f4;
+}
+
+.img-main img{
+	width: 100%;
+	height: auto;
+}
+
+.img-sub img{
+	margin-top: 10px;
+	width: 95%;
+	height: auto;
+}
+
+/*========================================
+  商品詳細
+========================================*/
+.product-detail{
+	margin-top: 15px;
+	height: 200px;
+	background-color: #f6f5f4;
+}
+
+.product-buy{
+	margin-top: 15px;
+	height: 60px;
+	line-height: 60px;
+	display: flex;
+	justify-content: flex-end;
+
+}
+
+.product-buy .back a{
+	color: #b6a489;
+}
+
+.product-buy .price{
+	margin-right: 20px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.product-buy p:nth-child(1){
+	margin-right: auto;
+}
+
+/*========================================
+  フッター
+========================================*/
+footer{
+	margin-top: 80px;
+	background-color: #333;
+	height: 40px;
+	line-height: 40px;
+	font-size: 8px;
+	color: white;
+	text-align: center;
+}
+
+
