@@ -39,7 +39,7 @@ if(!empty($_POST)){
                     //認証キーの作成
                     $authentication_key = makeAuthKey();
                     //メール送信
-                    $from = 'info@photomarket.com';
+                    $from = mb_encode_mimeheader("PHOTOMARKET") .'<info@phoromarket.com>';
                     $to = $email;
                     $subject = 'パスワード再発行 | PHOTOMARKET';
                     $message = <<<EOF
