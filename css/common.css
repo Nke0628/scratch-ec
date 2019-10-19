@@ -1,0 +1,130 @@
+/*========================================
+  共通CSS
+========================================*/
+
+/*========================================
+  サイト全体
+========================================*/
+.site-width{
+	width: 980px;
+	margin: 0 auto;
+}
+
+.fl-left{
+	float: left;
+}
+
+.fl-right{
+	float: right;
+}
+
+
+/*========================================
+  背景
+========================================*/
+.bg-gray{
+	background-color: #eee;
+}
+
+
+/*========================================
+  テキストカラー
+========================================*/
+.tx-gold{
+	color: #b6a489;
+}
+
+.tx-red{
+	color: red;
+}
+
+
+/*========================================
+  テキスト配置
+========================================*/
+.text-center{
+	text-align: center;
+}
+
+
+/*========================================
+  ボーダー
+========================================*/
+.bd-gold{
+	border:10px solid #f6f5f4;
+}
+
+
+/*========================================
+  アンダーライン
+========================================*/
+.tx-under{
+	text-decoration: underline;
+}
+
+
+/*========================================
+  ボタン
+========================================*/
+.btn{
+	padding: 15px 15px;
+	background-color: #b6a489;
+	color: white;
+	font-size: 18px;
+}
+
+
+/*========================================
+  フッター
+========================================*/
+footer{
+	margin-top: 80px;
+	background-color: #333;
+	height: 40px;
+	line-height: 40px;
+	font-size: 8px;
+	color: white;
+	text-align: center;
+	width: 100%;
+}
+
+/*========================================
+  フォーム
+========================================*/
+
+.form-container{
+	padding: 20px 40px;	
+	margin: 0 auto;
+	width:400px;
+	overflow: hidden;
+}
+
+.form-conatiner{
+	display: inline-block;
+}
+
+.form-container .title{
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+input[type="text"],input[type="password"]{
+	display: block;
+	border:none;
+	background: #eee;
+	height: 40px;
+	width: 100%;
+	font-size: 16px;
+}
+
+input[type="checkbox"]{
+	display: inline-block;
+}
+
+input[type="submit"]{
+	cursor: pointer;
+}
+
+label.err input{
+	background: #f7dcd9;
+}

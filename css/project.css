@@ -1,0 +1,35 @@
+/*========================================
+マイページ
+========================================*/
+.mypage{
+	display: flex;
+}
+
+.mypage-info{
+	width: 75%;
+}
+
+.mypage-menu{
+	width: 25%;
+	min-height: 500px;
+	padding: 10px 15px;
+	box-sizing: border-box;
+}
+
+.mypage-menu ul li a{
+	text-decoration: underline;
+}
+
+/*========================================
+退会
+========================================*/
+.subsc-btn-container{
+	text-align: center;
+}
+
+/*========================================
+ログイン
+========================================*/
+.login-btn{
+	float: right;
+}

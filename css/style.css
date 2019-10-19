@@ -1,43 +1,10 @@
-body {
-  margin: 0;
-  padding: 0;
-  color: #444;
-  line-height: 150%;
-}
-
-h1,h2,h3,h4,h5,h6,p,ul,li,span{
-  margin: 0;
-  padding: 0;
-}
-
 /*========================================
-  リンク
+  インポート
 ========================================*/
-
-a,
-a:active,
-a:focus {
-  color: white;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-
-/*========================================
-  サイト全体
-========================================*/
-.site-width{
-	width: 980px;
-	margin: 0 auto;
-}
-
-.btn{
-	padding: 15px 15px;
-	background-color: #b6a489;
-	color: white;
-	font-size: 18px;
-}
+@import url("reset.css");
+@import url("project.css");
+@import url("margin.css");
+@import url("common.css");
 
 /*========================================
   ヘッダー
@@ -52,6 +19,10 @@ header{
 header .menu{
 	display: flex;
 	justify-content: space-between
+}
+
+header .menu a{
+	color: white;
 }
 
 header .menu ul{
@@ -105,6 +76,8 @@ header .menu ul li{
 .img-main img{
 	width: 100%;
 	height: auto;
+	vertical-align: bottom;
+
 }
 
 .img-sub img{
@@ -118,8 +91,9 @@ header .menu ul li{
 ========================================*/
 .product-detail{
 	margin-top: 15px;
-	height: 200px;
+	min-height: 200px;
 	background-color: #f6f5f4;
+	padding: 10px 15px;
 }
 
 .product-buy{
@@ -143,19 +117,6 @@ header .menu ul li{
 
 .product-buy p:nth-child(1){
 	margin-right: auto;
-}
-
-/*========================================
-  フッター
-========================================*/
-footer{
-	margin-top: 80px;
-	background-color: #333;
-	height: 40px;
-	line-height: 40px;
-	font-size: 8px;
-	color: white;
-	text-align: center;
 }
 
 
