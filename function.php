@@ -26,6 +26,7 @@ function debug($str){
 	}
 }
 
+
 /**************************************************
 * セッション
 **************************************************/
@@ -39,6 +40,7 @@ ini_set('session.cookie_lifetime', 60*60*24*30);
 session_start();
 //セキュリティ対策
 session_regenerate_id();
+
 
 /**************************************************
 * エラーメッセージ
@@ -56,8 +58,9 @@ define('MSG09','パスワードがアンマッチです');
 define('MSG10','メール送信に失敗しました');
 define('MSG11','認証キーが違います');
 define('MSG12','有効期限が切れています');
+define('MSG13','数値を入力してください');
+define('MSG14','電話番号の形式が異なります');
 define('SUC01','メール送信しました。');
-
 
 
 /**************************************************
@@ -88,10 +91,14 @@ function dbConnect(){
   return $dbh;
 }
 
+
 /**
-* DB接続を行います
+* クエリを実行し、PDOStatementを返します
 *
-* @return PDOobject
+* @param PDOobject $db 任意のDBコネクション
+* @param string $sql 実行SQL
+* @param array $data クエリパラメータ
+* @return PDOStatement
 */
 function queryPost($db, $sql, $data){
 	$stmt = $db->prepare($sql);
@@ -106,6 +113,36 @@ function queryPost($db, $sql, $data){
 
 	return $stmt;
 }
+
+
+/**
+* DBからユーザ情報を取得します
+*
+* @param string $user_id ユーザID
+* @return array
+*/
+function getUser($user_id){
+
+	global $err_msg;
+
+	try{
+        $db = dbConnect();
+        $sql = 'SELECT * FROM users WHERE id = :user_id AND delete_flag = 0';
+        $data = array(':user_id' => $user_id);
+        $stmt = queryPost($db, $sql, $data);
+
+        if($stmt){
+        	return $stmt->fetch(PDO::FETCH_ASSOC);
+        }else{
+        	return false;
+        }
+	}catch(Exception $e){
+		debug('エラー発生' . $e->getMessage());
+		$err_msg['common'] = MSG07;
+	}
+}
+
+
 /**************************************************
 * バリデーション
 **************************************************/
@@ -121,6 +158,7 @@ function validRequired($str, $key){
 	}
 }
 
+
 /**
 * emailの形式チェック
 * @param string $str 入力値
@@ -132,6 +170,7 @@ function validEmail($str, $key){
 		$err_msg[$key] = MSG04;	
 	}
 }
+
 
 /**
 * emailの重複チェック
@@ -154,6 +193,7 @@ function validEmailDup($email){
 	}
 }
 
+
 /**
 * 最大値入力チェック
 * @param string $str 入力値
@@ -161,13 +201,14 @@ function validEmailDup($email){
 * @param int $max 最大入力値
 */
 function validMaxLen($str, $key, $max = 255){
-	if(empty($str)){
+	if(!empty($str)){
 		if(mb_strlen($str) > $max){
 			global $err_msg;
 			$err_msg[$key] = MSG03;
 		}
 	}
 }
+
 
 /**
 * 最小値入力チェック
@@ -176,13 +217,14 @@ function validMaxLen($str, $key, $max = 255){
 * @param int $min 最小入力値
 */
 function validMinLen($str, $key, $min = 6){
-	if(empty($str)){
+	if(!empty($str)){
 		if(mb_strlen($str) < $min){
 			global $err_msg;
 			$err_msg[$key] = MSG05;
 		}
 	}
 }
+
 
 /**
 * 半角チェック
@@ -196,6 +238,7 @@ function validHalf($str, $key){
 	}
 }
 
+
 /**
 * 入力値マッチチェック
 * @param string $str 入力値
@@ -208,20 +251,91 @@ function validMatch($str, $str2, $key){
 		$err_msg[$key] = MSG08;	
 	}
 }
+
+
+/**
+* 数値チェック
+* @param string $str 入力値
+* @param string $ste2 エラーキー
+*/
+function validNumber($str, $key){
+	if(!preg_match('/^\d*$/', $str)){
+		global $err_msg;
+		$err_msg[$key] = MSG13;	
+	}
+}
+
+
+/**
+* 電話番号チェック(ハイフンなし)
+* @param string $str 入力値
+* @param string $ste2 エラーキー
+*/
+function validTel($str, $key){
+	if(!preg_match('/^(0{1}\d{9,10})*$/', $str)){
+		global $err_msg;
+		$err_msg[$key] = MSG14;	
+	}
+}
+
+
+/**
+* パスワード形式チェック
+* @param string $str 入力値
+* @param string $ste2 エラーキー
+*/
+function validPass($str, $key){
+    validHalf($str,$key);
+    validMinLen($str,$key);
+    validMaxLen($str,$key);
+}
+
+
 /**************************************************
 * エスケープ
 **************************************************/
 /**
 * エスケープ処理
+* 
+* @param string $str エスケープする文字列
+* @return string
 */
 function h($str){
 	return htmlspecialchars($str,ENT_QUOTES,'utf-8');
 }
 
+
 /**************************************************
 * 送信データ保存
 **************************************************/
+/**
+* DBから取得したデータと、フォーム送信されたデータを表示する関数
+* 
+* @param string $str エスケープする文字列
+* @return string
+*/
 function dbFormData($key){
+
+/*
+想定パターン
+①DBあり、送信あり → 送信データ
+②DBなし、送信あり → 送信データ
+③DBあり、送信なし → DBデータ
+④どちらもなし　   → 空
+*/
+
+    global $dbFormData;
+    global $err_msg;
+
+    //POST or GET 送信がある場合
+    if(!empty($_POST[$key]) || !empty($_GET[$key])){
+        return $_POST[$key];
+    }else{
+    	//DBから取得データがあれば返す
+    	if(!empty($dbFormData[$key])){
+    		return $dbFormData[$key];
+    	}
+    }
 
 }
 
@@ -268,4 +382,59 @@ function sendMail($from, $to, $subject, $message){
     		debug('メール送信失敗しました');
     	}
     }
+}
+
+
+/**************************************************
+* 画像処理
+**************************************************/
+function uploadImg($file, $key){
+	debug('画像処理開始');
+	debug('FILE情報:' . print_r($file, true));
+
+	//ファイル確認
+	if(isset($file['error']) && is_int($file['error'])){
+		try{
+            
+            //ファイルエラーチェック
+			switch ($file['error']) {
+				case UPLOAD_ERR_OK:
+					break;
+				case UPLOAD_ERR_NO_FILE:
+				    throw new RuntimeException('ファイルが存在しません');
+				case UPLOAD_ERR_INI_SIZE:
+				    throw new RuntimeException('ファイルの最大サイズを超えています');
+				case UPLOAD_ERR_FORM_SIZE:
+				    throw new RuntimeException('ファイルの最大サイズを超えています');				    
+				default:
+					throw new RuntimeException('エラーが発生しました。しばらく経ってからやり直してください');
+			}
+            
+			//MIMEタイプの確認
+			$img_type = @exif_imagetype($file['tmp_name']);
+			if(!in_array($img_type, [IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG],true)){
+				throw new RuntimeException("Error Processing Request", 1);
+			}
+
+			//ファイルパス設定(ファイル名はユニークにする)
+            $path = 'uploads/' . sha1_file($file['tmp_name']) . image_type_to_extension($img_type);
+
+            //ファイルを保存
+            if(!move_uploaded_file($file['tmp_name'], $path)){
+            	throw new RuntimeException('ファイル保存時にエラーが発生しました');
+            }
+
+            //権限変更
+            chmod($paht, 0644);
+
+            debug('画像保存しました');
+            debug('ファイルパス: ' . print_r($path,true));
+
+            return $path;
+		}catch(Exception $e){
+			debug('エラー発生:' . print_r($e->getMessage()));
+			global $err_msg;
+			$err_msg[$key] = $e->getMessage();
+		}
+	}
 }

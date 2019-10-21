@@ -1,24 +1,74 @@
 /*========================================
 マイページ
 ========================================*/
-.mypage{
-	display: flex;
+.mypage-wrapper{
+	margin-top:40px;
 }
 
-.mypage-info{
+.mypage{
+	display: flex;
+	margin-top: 25px;
+}
+
+.mypage-left{
 	width: 75%;
 }
 
-.mypage-menu{
+.mypage-right{
 	width: 25%;
-	min-height: 500px;
+	height: 500px;
 	padding: 10px 15px;
 	box-sizing: border-box;
 }
 
-.mypage-menu ul li a{
+.mypage-right ul li a{
 	text-decoration: underline;
 }
+
+.mypage-form-wrapper{
+	padding: 20px 100px;
+	margin: 0 30px;
+}
+
+.mypage-form-btn{
+	margin-top: 40px;
+	text-align: right;
+}
+
+.mypage-drop-prof{
+	display: block;
+	border:none;
+	background: #eee;
+	height: 180px;
+	width: 40%;
+	font-size: 16px;
+	margin-bottom: 15px;
+	position: relative;
+	text-align:center;
+	line-height: 180px;
+}
+
+.mypage-form-img{
+	opacity: 0;
+	border:none;
+	background: #eee;
+	height: auto;
+	width: 100%;
+	font-size: 16px;
+	margin-bottom: 15px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.mypage-img{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 
 /*========================================
 退会
@@ -27,9 +77,51 @@
 	text-align: center;
 }
 
+
 /*========================================
 ログイン
 ========================================*/
 .login-btn{
 	float: right;
+}
+
+
+/*========================================
+  ヘッダー
+========================================*/
+header{
+	background-color: #333;
+	height: 80px;
+	line-height: 89px;
+	color: white;
+}
+
+header .menu{
+	display: flex;
+	justify-content: space-between
+}
+
+header .menu a{
+	color: white;
+}
+
+header .menu ul{
+	display: flex;
+	list-style: none;
+}
+
+header .menu ul li{
+	margin-left: 15px;
+}
+
+
+/*========================================
+  フッター
+========================================*/
+.footer{
+	margin-top: 80px;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	font-size: 8px;
 }

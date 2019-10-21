@@ -10,20 +10,16 @@
 	margin: 0 auto;
 }
 
-.fl-left{
-	float: left;
-}
-
-.fl-right{
-	float: right;
-}
-
 
 /*========================================
   背景
 ========================================*/
 .bg-gray{
 	background-color: #eee;
+}
+
+.bg-black{
+	background-color: #333;
 }
 
 
@@ -38,6 +34,9 @@
 	color: red;
 }
 
+.tx-white{
+	color: white;
+}
 
 /*========================================
   テキスト配置
@@ -73,21 +72,6 @@
 	font-size: 18px;
 }
 
-
-/*========================================
-  フッター
-========================================*/
-footer{
-	margin-top: 80px;
-	background-color: #333;
-	height: 40px;
-	line-height: 40px;
-	font-size: 8px;
-	color: white;
-	text-align: center;
-	width: 100%;
-}
-
 /*========================================
   フォーム
 ========================================*/
@@ -115,10 +99,21 @@ input[type="text"],input[type="password"]{
 	height: 40px;
 	width: 100%;
 	font-size: 16px;
+	margin-bottom: 15px;
 }
 
 input[type="checkbox"]{
 	display: inline-block;
+}
+
+input[type="number"]{
+	display: block;
+	border:none;
+	background: #eee;
+	height: 40px;
+	width: 30%;
+	font-size: 16px;
+	margin-bottom: 15px;
 }
 
 input[type="submit"]{
@@ -127,4 +122,8 @@ input[type="submit"]{
 
 label.err input{
 	background: #f7dcd9;
+}
+
+.area-msg{
+	margin-bottom: 15px;
 }

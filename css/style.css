@@ -7,34 +7,6 @@
 @import url("common.css");
 
 /*========================================
-  ヘッダー
-========================================*/
-header{
-	background-color: #333;
-	height: 80px;
-	line-height: 89px;
-	color: white;
-}
-
-header .menu{
-	display: flex;
-	justify-content: space-between
-}
-
-header .menu a{
-	color: white;
-}
-
-header .menu ul{
-	display: flex;
-	list-style: none;
-}
-
-header .menu ul li{
-	margin-left: 15px;
-}
-
-/*========================================
   メイン
 ========================================*/
 

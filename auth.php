@@ -33,6 +33,3 @@ if(!empty($_SESSION['login_time'])){
 		exit;			
 	}
 }
-
-
-?>
