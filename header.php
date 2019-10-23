@@ -1,6 +1,6 @@
   	<header>
   		<div class="menu site-width">
-  			<h2>PHOTOMRKEAT</h2>
+  			<h2><a href="index.php">PHOTOMRKEAT</a></h2>
   			<ul>
   			<?php 
   				if(empty($_SESSION['login_time'])){

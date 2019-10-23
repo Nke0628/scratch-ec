@@ -22,6 +22,10 @@
 	background-color: #333;
 }
 
+.bg-success{
+    background-color: rgba(18,231,255,0.7);
+}
+
 
 /*========================================
   テキストカラー
@@ -38,6 +42,10 @@
 	color: white;
 }
 
+.tx-black{
+	color: #444;
+}
+
 /*========================================
   テキスト配置
 ========================================*/
@@ -45,6 +53,13 @@
 	text-align: center;
 }
 
+.text-right{
+	text-align: right;
+}
+
+.text-left{
+	text-align: left;
+}
 
 /*========================================
   ボーダー
@@ -70,6 +85,7 @@
 	background-color: #b6a489;
 	color: white;
 	font-size: 18px;
+	cursor: pointer;
 }
 
 /*========================================
@@ -92,7 +108,7 @@
 	margin-bottom: 50px;
 }
 
-input[type="text"],input[type="password"]{
+input[type="text"],input[type="password"],select{
 	display: block;
 	border:none;
 	background: #eee;

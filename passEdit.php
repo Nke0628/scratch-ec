@@ -89,6 +89,7 @@ info@photomarket.com
 EOF;
 
             sendMail($from, $to, $subject, $message);
+            $_SESSION['msg_success'] = SUC02;
             debug('パスワードを変更しました');
             debug('マイページへ遷移します');
             //遷移

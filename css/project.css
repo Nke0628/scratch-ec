@@ -1,3 +1,84 @@
+/* このファイルはプロジェクト独自のCSSを記述します */
+
+/*========================================
+  一覧ページ
+========================================*/
+.index-wrapper .main{
+	margin-top: 25px;
+}
+
+.index{
+	display: flex;
+}
+
+.index-right{
+	width: 75%;
+	margin-left: 20px;
+	box-sizing:border-box;
+}
+
+.index-left{
+	width: 25%;
+	height: 300px;
+	box-sizing:border-box;
+	padding: 10px 25px;
+}
+
+.index-left select{
+	display: block;
+	background: white;
+	border:1px solid #444;
+	height: 40px;
+	width: 100%;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+.index-right-header{
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.index-right-grid-container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  column-gap: 8px;
+  row-gap: 8px;
+}
+
+.index-right-grid-container > div {
+  height: 165px;
+}
+.index-right-grid-container img{
+	width: 100%;
+	max-height: 110px;
+	vertical-align: bottom;
+}
+
+.price{
+	font-weight: bold;
+}
+
+.pagination-list{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.pagination-list .list-item{
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    margin-left: 4px;
+}
+
+.list-item a{
+	color: #444;
+}
+
 /*========================================
 マイページ
 ========================================*/
@@ -39,7 +120,7 @@
 	display: block;
 	border:none;
 	background: #eee;
-	height: 180px;
+	height: auto;
 	width: 40%;
 	font-size: 16px;
 	margin-bottom: 15px;
@@ -69,6 +150,31 @@
 	left: 0;
 }
 
+.box-require{
+	background-color: #ffb6c1;
+	padding: 2px;
+	color: white;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	margin-left: 5px;
+}
+
+/*========================================
+商品登録
+========================================*/
+.mypage-product-commnet{
+	display: block;
+	border:none;
+	background: #eee;
+	width: 100%;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.text-count{
+	text-align: right;
+}
 
 /*========================================
 退会
@@ -124,4 +230,13 @@ header .menu ul li{
 	height: 40px;
 	line-height: 40px;
 	font-size: 8px;
+}
+
+/*========================================
+  セッションメッセージ
+========================================*/
+.js-session-message{
+	display: none;
+	height: 40px;
+	line-height: 40px;
 }

@@ -13,6 +13,10 @@ require 'head.php';
 require 'header.php';
 
 ?>
+<!--セッションメッセージ-->
+<p class="js-session-message bg-success text-center tx-black">
+  <?php echo getSessionMessage('msg_success');?>
+</p>
 <!-- メインコンテンツ -->
 <div class="contents-wrapper mt25">
   <div class="main site-width">
