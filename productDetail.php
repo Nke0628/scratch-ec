@@ -23,6 +23,46 @@ if(empty($dbProductData)){
   exit;
 }
 
+//================================
+// POST処理
+//================================
+if(!empty($_POST)){
+  
+    //認証確認(ログインしていなければログインページへ)
+    require 'auth.php';
+
+    $sale_user = h($_POST['sale_user']);
+    $product_id = h($_POST['product_id']);
+
+    try{
+        $db = dbConnect();
+        $sql = 'INSERT INTO board(sale_user,buy_user,product_id,create_date) VALUES(:sale_user,:buy_user,:product_id,:create_date)';
+        $data = array(
+              ':sale_user' => $sale_user,
+              ':buy_user' => $_SESSION['user_id'],
+              ':product_id' => $product_id,
+              ':create_date' => date('Y-m-d H:i:s'),
+            ); 
+        $stmt = queryPost($db,$sql,$data);
+        logInfo(pdo_debugStrParams($stmt));
+        if($stmt){
+            logInfo('購入しました');
+            logInfo('マイページへ遷移します');
+            //遷移
+            $_SESSION['msg_success'] = SUC04;
+            header('Location: mypage.php');
+            exit;
+        }else{
+            logAlert('購入エラー');
+            $err_msg['common'] = MSG07;
+        }
+    }catch(Exception $e){
+        logAlert('エラー発生' . $e->getMessage());
+        $err_msg['common'] = MSG07;
+    }
+}
+
+
 $siteTitle = '商品詳細ページ';
 require 'head.php';
 require 'header.php';
@@ -69,7 +109,9 @@ require 'header.php';
   			<p class="price">¥<?php echo number_format(h($dbProductData['price'])); ?>-円</p>
   			<div class="buy">
   				<form method="post" action="">
-  					<button  class="btn" type="submit" name="submit">買う！</button>
+            <input type="hidden" name="product_id" value="<?php echo h($dbProductData['id']);?>">
+            <input type="hidden" name="sale_user" value="<?php echo h($dbProductData['user_id']);?>">
+  				  <button  class="btn" type="submit" name="submit">買う！</button>
   				</form>
   			</div>
   		</div>
