@@ -68,6 +68,21 @@ function debug($str){
 }
 
 
+/**
+* 実行SQLを返します。
+*
+* @param PDOStatement $stmt
+* @return string
+*/
+function pdo_debugStrParams($stmt) {
+  ob_start();
+  $stmt->debugDumpParams();
+  $r = ob_get_contents();
+  ob_end_clean();
+  return $r;
+}
+
+
 /**************************************************
 * セッション
 **************************************************/
@@ -119,7 +134,6 @@ define('SUC03','商品を登録しました');
 /**************************************************
 * DB関連
 **************************************************/
-
 /**
 * DB接続を行います
 *
@@ -250,6 +264,36 @@ function getProduct($user_id, $product_id){
 		debug('エラー発生' . $e->getMessage());
 		$err_msg['common'] = MSG07;
 	}
+}
+
+
+/**
+* DBから商品詳細情報を取得します
+*
+* @param string $product_id 商品ID
+* @return array
+*/
+function getProductDetail($product_id){
+
+    global $err_msg;
+
+    try{
+        $db = dbConnect();
+        $sql = 'SELECT p.*,c.name as category_name FROM products AS p INNER JOIN category AS c ON p.category_id = c.id where p.id = :product_id AND p.delete_flag = 0 AND c.delete_flag = 0';
+        $data = array(
+            ':product_id' => $product_id,
+        );
+        $stmt = queryPost($db, $sql, $data);
+        logInfo(pdo_debugStrParams($stmt));
+        if($stmt){
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }else{
+            return false;
+        }
+    }catch(Exception $e){
+        logAlert('エラー発生' . $e->getMessage());
+        $err_msg['common'] = MSG07;
+    }
 }
 
 

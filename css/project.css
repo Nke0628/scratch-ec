@@ -63,6 +63,10 @@
 	font-weight: bold;
 }
 
+.index-right-grid-container a{
+	color: #444;
+}
+
 .pagination-list{
 	margin-top: 20px;
 	text-align: center;

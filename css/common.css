@@ -89,6 +89,61 @@
 }
 
 /*========================================
+  モーダル
+========================================*/
+.mask{
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	bottom:0;
+	background: rgba(0,0,0,0.6);
+	display: none;
+	z-index: 9999;
+}
+
+.modal{
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 100px;s
+}
+
+.slider{
+	text-align: center;
+	position: relative;
+	background:white;
+	padding: 10px 10px;
+}
+
+.slider img{
+	width: 600px;
+	height: auto;
+}
+
+.slider .fa-angle-right{
+	position: absolute;
+	top: 200px;
+	right: 60px;
+	font-size: 30px;
+	color: #444;
+}
+
+.slider .fa-angle-left{
+	position: absolute;
+	top: 200px;
+	left: 60px;
+	font-size: 30px;
+	color: #444;
+}
+
+.close{
+	text-align: right;
+	color: white;
+	font-size: 30px;
+}
+
+
+/*========================================
   フォーム
 ========================================*/
 

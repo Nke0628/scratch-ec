@@ -12,13 +12,61 @@ $(function(){
   * セッションメッセージの表示
   ==================================*/
   $message = $('.js-session-message')
-  console.log($message.text());
   if($message.text().replace(/\s+/g, "").length){
     $message.slideToggle('slow');
     setTimeout(function(){
       $message.slideToggle('slow');
     },5000)
   }
+
+  /*==================================
+  * モーダル表示
+  ==================================*/
+  //変数宣言
+  let $mask = $('.mask'),
+      $images = $('.img-sub').find('img'),
+      images = [],
+      $mainImg = $('.slider-main-img'),
+      currentImg = '';
+
+  //スライダー用の画像配列を作成
+  $images.each(function(i,v){
+      images.push(this.src);
+  });
+
+  //メイン・サブ画像クリックでモーダルオープン
+  $('.img-main img,.img-sub img').on('click',function(){
+      $mainImg.attr('src',this.src);
+      $mask.css('display','block');
+      //現在の画像インデックスを格納しておく
+      currentImg = $.inArray(this.src,images);
+  });
+
+  //次の画像へ
+  $('.slider-right').on('click',function(){
+      currentImg += 1;
+      //一周した場合のインデックスを最初に戻す
+      if(currentImg == images.length){
+        currentImg = 0;
+      }
+      $mainImg.attr('src',images[currentImg]);
+  });
+
+  //前の画像へ
+  $('.slider-left').on('click',function(){
+      currentImg -= 1;
+      //一周した場合のインデックスを最後に戻す
+      if(currentImg == -1){
+        currentImg = images.length-1;
+      }
+      $mainImg.attr('src',images[currentImg]);
+  });
+
+  //クローズ
+  $('.close .fas').on('click',function(){
+    $mask.css('display','none');
+  });
+
 
   /*==================================
   * 商品登録時のテキストカウント

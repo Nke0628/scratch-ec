@@ -58,11 +58,13 @@ require 'header.php';
       	<div class="index-right-grid-container">
             <?php foreach ($dbProductData['data'] as $key => $value): ?>
             <div>
-              <div>
-              	<img src="<?php echo showImg($value['pic1']); ?>">
-              </div>
-              <p>test</p>
-              <p class="price">¥100</p>
+              <a href="productDetail.php?product_id=<?php echo $value['id']; ?>">
+                <div>
+              	  <img src="<?php echo showImg($value['pic1']); ?>">
+                </div>
+                <p><?php echo h($value['name']); ?></p>
+                <p class="price">¥<?php echo h($value['price']); ?></p>
+              </a>
             </div>
             <?php endforeach ?>
       	</div>
