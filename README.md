@@ -1,2 +1,2 @@
-# scratch_php_web
+# scratch_ec
 フレームワークなしで作成した、架空販売サイト
